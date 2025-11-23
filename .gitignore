@@ -1,0 +1,18 @@
+# Visual Studio internal files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.user
+
+# Build outputs
+/x64/
+/Debug/
+/Release/
+/build/
+/out/
+
+# Temporary files
+*.log
+*.cache
