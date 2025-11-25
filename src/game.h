@@ -9,5 +9,4 @@ class Game
 	string platform;
 	string genre;
 	double main_hours;
-
 };
