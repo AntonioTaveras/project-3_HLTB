@@ -2,24 +2,63 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+using namespace std;
 
-std::vector<Game> load_data(const std::string& csv_path)
+vector<string> parse_csv_line(const string& line)
 {
-    std::vector<Game> games;
+    vector<string> fields;
+    string field;
+    bool quotes = false;
 
-    std::ifstream file(csv_path);
+    for (size_t i = 0; i < line.size(); i++)
+    {
+        char c = line[i];
+
+        if (c == '"')
+        {
+            quotes = !quotes;
+            continue;
+        }
+
+        if (c == ',' && !quotes)
+        {
+            fields.push_back(field);
+            field.clear();
+            continue;
+        }
+
+        // add the character to current field
+        field += c;
+
+    }
+    fields.push_back(field);
+
+    return fields;
+}
+
+
+vector<Game> load_data(const string& csv_path)
+{
+    vector<Game> games;
+
+    ifstream file(csv_path);
     if (!file.is_open())
     {
-        std::cerr << "File " << csv_path << " could not open" << std::endl;
+        cerr << "File " << csv_path << " could not open" << endl;
         return games;
     }
 
-    std::string line;
-    std::getline(file, line);
+    string line;
+    getline(file, line);
 
-    while (std::getline(file, line))
+    while (getline(file, line))
     {
-        // TODO parse lines
+        vector<string> fields = parse_csv_line(line);
+
+        cout << "Row has " << fields.size() << " fields" << endl;/// DEBUG
+        break;                                                   ///
+
+
     }
 
     return games;
