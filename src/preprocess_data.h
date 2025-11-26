@@ -3,9 +3,5 @@
 #include "game.h"
 using namespace std;
 
-
-class Preprocessor
-{
-	vector<Game> clean_data(const vector<Game>& games);
-	vector<Game> separate_genres(const vector<Game>& games);
-};
+vector<Game> clean_data(const vector<Game>& games);
+vector<Game> separate_genres(const vector<Game>& games);

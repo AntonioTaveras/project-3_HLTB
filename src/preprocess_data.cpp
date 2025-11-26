@@ -1,7 +1,7 @@
 #include "preprocess_data.h"
 #include <sstream>
 
-vector<Game> Preprocessor::clean_data(const vector<Game>& games)
+vector<Game> clean_data(const vector<Game>& games)
 {
 	vector<Game> cleaned_games;
 
@@ -14,7 +14,7 @@ vector<Game> Preprocessor::clean_data(const vector<Game>& games)
 	return cleaned_games;
 }
 
-vector<Game> Preprocessor::separate_genres(const vector<Game>& games)
+vector<Game> separate_genres(const vector<Game>& games)
 {
 	vector<Game> genre_separated_games;
 
