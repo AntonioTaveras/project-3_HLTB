@@ -4,6 +4,7 @@ using namespace std;
 
 class Game 
 {
+public:
 	int id;
 	string name;
 	string platform;
