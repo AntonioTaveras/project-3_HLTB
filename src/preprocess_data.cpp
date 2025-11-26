@@ -1,4 +1,5 @@
 #include "preprocess_data.h"
+#include "game.h"
 #include <sstream>
 
 vector<Game> clean_data(const vector<Game>& games)
