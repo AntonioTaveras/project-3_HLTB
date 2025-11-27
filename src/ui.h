@@ -1,14 +1,26 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "game.h"
-using namespace std;
+
 
 class  UI{
-public:
-    string genre;
+private:
+    std::string genre;
     int hours;
-    bool perDay; // True = Day, False = Week
+    bool isPerDay; // True = Day, False = Week
     bool hasDeadline;
     int goalAmount; // The number of goals
-    int goalUnit; // ex. 1 days, 2 weeks, 3 months, 4 years
+    int goalUnit; // ex. 0=days, 1=weeks, 2=months, 3=years
+
+public:
+    UI();
+    void promptUser();
+    std::string getGenre() const;
+    int getHours() const;
+    bool getIsPerDay() const;
+    bool getHasDeadline() const;
+    int getGoalAmount() const;
+    int getGoalUnit() const;
+    void showRecommendations(const std::vector<Game>& games) const;
 };
