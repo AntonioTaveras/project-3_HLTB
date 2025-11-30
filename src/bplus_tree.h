@@ -6,19 +6,19 @@ using namespace std;
 class BPlusLeaf {
 
 private:
-	vector<string> genres;
+	vector<string> genres; // key
 	int numGenres; // tracks amount of keys
 
-	vector<vector<Game>> games;
-	BPlusLeaf* next;
+	vector<vector<Game>> games; // values
+	BPlusLeaf* next; // next ptr since all leaves are connected like a linked list
 
 public:
 	BPlusLeaf(); // constructor
 
-	void insert(string genre, vector<Game> games);
+	void insert(Game game);
 	vector<Game>* search(string genre);
 	bool isFull(int maxKeys);
-	BPlusLeaf* splitLeaf();
+	BPlusLeaf* splitLeafHelper();
 
 	// Getters
 	// Setters
@@ -30,13 +30,18 @@ private:
 	vector<string> keys; 
 	int numKeys;
 
-	vector<BPlusLeaf*> children; // internal points to leaf nodes
+	vector<BPlusInternal*> internalChildren;
+	vector<BPlusLeaf*> leafChildren; // internal points to leaf nodes
 	
 public:
 	BPlusInternal(); // constructor
 	bool isFull(int maxKeys);
 
-	BPlusInternal* splitInternal();
+	void addInternalChild(BPlusInternal* child);
+	void addLeafChild(BPlusLeaf* child);
+	void insertGenre(string genre);
+
+	BPlusInternal* splitInternalHelper();
 
 	// Getters
 	// Setters
@@ -49,7 +54,7 @@ private:
 	int keyCapacity; // max keys in one node
 
 public:
-	BPlusTree(int maxKeys = 4); // l = 4 ?
+	BPlusTree(int maxKeys = 3); // max 3 keys in one node - can change later
 	void insert(string genre, vector<Game> games);
 	vector<Game>* search(string genre);
 
