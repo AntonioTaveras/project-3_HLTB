@@ -49,7 +49,7 @@ bool HashTable::findAverage(const std::string& genre, double& avgHours) const {
 }
 
 size_t HashTable::hash(const string& key) const{
-    hash<string> hasher;
+    std::hash<string> hasher;
     size_t value = hasher(key);
     return value % table.size();
 }
