@@ -88,20 +88,19 @@ int BPlusLeaf::getNumGenres() {
 }
 
 /* ====== INTERNAL NODE Functions ====== */
-vector<BPlusLeaf*> BPlusInternal::getLeafChildren() {
-	return leafChildren;
-}
-
 BPlusInternal::BPlusInternal() {
-
+	numKeys = 0;
 }
 
 bool BPlusInternal::isFull(int maxKeys) {
+	if (numKeys >= maxKeys)
+		return true;
 
+	return false;
 }
 
 void BPlusInternal::addInternalChild(BPlusInternal* child) {
-
+	internalChildren.push_back(child);
 }
 
 void BPlusInternal::addLeafChild(BPlusLeaf* child) {
@@ -178,6 +177,10 @@ vector<BPlusLeaf*> BPlusInternal::getLeafChildren() {
 	return leafChildren;
 }
 
+vector<BPlusInternal*> BPlusInternal::getInternalChildren() {
+	return internalChildren;
+}
+
 /* ====== B+ TREE Functions ====== */
 BPlusTree::BPlusTree(int maxKeys) {
 	root = new BPlusLeaf(); // empty leaf
@@ -210,9 +213,25 @@ void BPlusTree::insert(Game game) {
 		return;
 	}
 
-	// else - has internal root...
+	// else - has internal root
+	BPlusInternal* internalRoot = (BPlusInternal*)root;
 
+	BPlusLeaf* leaf = findGenre(game.genre); // traverse through tree to find genre in a LEAF
+	leaf->insert(game);
 
+	if (!leaf->isFull(keyCapacity))
+		return;
+
+	// if leaf is full, split it and key UP
+	BPlusLeaf* rightLeaf = leaf->splitLeafHelper();
+
+	string keyUp = rightLeaf->getGenres()[0]; // copy code from insert
+	internalRoot->insertGenre(keyUp);
+	
+	internalRoot->insertGenre(keyUp);
+	internalRoot->addLeafChild(rightLeaf);
+
+	
 }
 
 vector<Game>* BPlusTree::search(string genre) {
@@ -221,10 +240,8 @@ vector<Game>* BPlusTree::search(string genre) {
 		return leaf->search(genre);
 	}
 	else {
-		BPlusInternal* internal = (BPlusInternal*) root;
-
-		BPlusLeaf* leaf = internal->getLeafChildren()[0]; // given only 2 levels of B+ tree - FIX: for multiple levels
-		return leaf->search(genre);
+		BPlusLeaf* leaf = findGenre(genre); // goes all the way to the leaf with the genre
+		return leaf->search(genre); // returns vector of Games of that genre
 	}
 }
 

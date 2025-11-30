@@ -49,6 +49,7 @@ public:
 	// Getters
 	vector<string>& getKeys();
 	vector<BPlusLeaf*> getLeafChildren();
+	vector<BPlusInternal*> getInternalChildren();
 	// Setters
 
 };
@@ -65,7 +66,4 @@ public:
 	vector<Game>* search(string genre);
 
 	BPlusLeaf* findGenre(string genre); // returns leaf with specified genre
-
-	void splitLeaf(BPlusLeaf* leafChild, BPlusInternal* parent);
-	void splitInternal(BPlusInternal* internalChild, BPlusInternal* parent);
 };
