@@ -21,6 +21,9 @@ public:
 	BPlusLeaf* splitLeafHelper();
 
 	// Getters
+	vector<string>& getGenres();
+	int getNumGenres();
+	vector<vector<Game>>& getGames();
 	// Setters
 };
 
@@ -44,18 +47,21 @@ public:
 	BPlusInternal* splitInternalHelper();
 
 	// Getters
+	vector<string>& getKeys();
+	vector<BPlusLeaf*> getLeafChildren();
 	// Setters
 
 };
 
 class BPlusTree {
 private:
-	BPlusLeaf* root;
+	void* root; // https://www.geeksforgeeks.org/cpp/cpp-void-pointer/
+	bool hasLeafRoot;
 	int keyCapacity; // max keys in one node
 
 public:
 	BPlusTree(int maxKeys = 3); // max 3 keys in one node - can change later
-	void insert(string genre, vector<Game> games);
+	void insert(Game game);
 	vector<Game>* search(string genre);
 
 	BPlusLeaf* findGenre(string genre); // returns leaf with specified genre
