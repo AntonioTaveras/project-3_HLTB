@@ -13,24 +13,39 @@ goalUnit(0)
 
 void UI::promptUser(){
     cout << "Backlog Breaker" << endl << endl;
-    cout << "Genre ";
+    cout << "Please enter your preferred genre: ";
     cin >> genre;
 
-    cout << "Do you want to enter your available time per day or week? (d/w) ";
+    cout << "Will you enter your available time per day or week? (d/w): ";
     char dayOrWeek;
     cin >> dayOrWeek;
+    while(dayOrWeek != 'd' && dayOrWeek != 'D' && dayOrWeek != 'w' && dayOrWeek != 'W'){
+        cout << "The input is invalid. Please try again" << endl;
+        cout << "Please enter your preferred genre: ";
+        cin >> dayOrWeek;
+    }
     if(dayOrWeek == 'd' || dayOrWeek == 'D'){
         isPerDay = true;
     }else{
         isPerDay = false;
     }
 
-    cout << "How many hours can you play? ";
-    cin >> hours;
+    if(isPerDay){
+        cout << "How many hours can you play per day?: ";
+        cin >> hours;
+    }else{
+        cout << "How many hours can you play per week?: ";
+        cin >> hours;
+    }
 
-    cout<< "Would you like to complete it by a certain day? (y/n)" << endl;
+    cout<< "Would you like to complete it by a certain day? (i.e. before the new semester begins or before haitus/leave of absence is over) (y/n): " << endl;
     char comp;
     cin >> comp;
+    while(comp != 'y' && comp != 'Y' && comp != 'n' && comp != 'N'){
+        cout << "The input is invalid. Please try again" << endl;
+        cout<< "Would you like to complete it by a certain day? (i.e. before the new semester begins or before haitus/leave of absence is over) (y/n): " << endl;
+        cin >> comp;
+    }
     if(comp == 'y' || comp == 'Y'){
         hasDeadline = true;
 
