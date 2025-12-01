@@ -21,7 +21,7 @@ void UI::promptUser(){
     cin >> dayOrWeek;
     while(dayOrWeek != 'd' && dayOrWeek != 'D' && dayOrWeek != 'w' && dayOrWeek != 'W'){
         cout << "The input is invalid. Please try again" << endl;
-        cout << "Please enter your preferred genre: ";
+        cout << "Will you enter your available time per day or week? (d/w): ";
         cin >> dayOrWeek;
     }
     if(dayOrWeek == 'd' || dayOrWeek == 'D'){
