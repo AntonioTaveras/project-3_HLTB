@@ -63,6 +63,14 @@ void UI::showRecommendations(const vector<Game>& games) const{
         cout << "There is no game for you" << endl;
         return;
     }
+
+    cout << "=================" << endl;
+    cout << "Recommended Games" << endl;
+    cout << "=================" << endl;
+
+    for(const Game& g : games){
+        cout << "Title: " << g.name << " | Play Hours: " << g.main_hours << endl;
+    }
 }
 
 string UI::getGenre() const{
