@@ -8,12 +8,12 @@ class HashTable{
 public:
 	HashTable(size_t bucketNum = 101);
 	void makeTable(const std::vector<Game>& games);
-	bool findAverage(const std::string& genre, double& avgHours) const;
+	bool findGames(const std::string& genre, std::vector<Game>& genreGames) const;
 
 private:
 	struct Entry{
 		std::string genre;
-		double avgHours;
+		vector<Game> games;
 	};
 
 	std::vector<std::list<Entry>> table;
