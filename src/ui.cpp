@@ -94,7 +94,7 @@ void UI::showRecommendations(const vector<Game>& genreGames) const{
     cout << "=================" << endl;
 
     for(const Game& g : filtered){
-        cout << "Title: " << g.name << " | Play Hours: " << g.main_hours << endl;
+        cout << "Title: " << g.name << " | Play Hours: " << g.main_hours << " hours" << endl;
     }
 }
 
