@@ -13,7 +13,7 @@ public:
 private:
 	struct Entry{
 		std::string genre;
-		vector<Game> games;
+		std::vector<Game> games;
 	};
 
 	std::vector<std::list<Entry>> table;

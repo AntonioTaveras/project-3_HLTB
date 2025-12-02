@@ -35,7 +35,7 @@ void HashTable::makeTable(const std::vector<Game>& games){
 // Look up all games for the given genre
 bool HashTable::findGames(const std::string& genre, vector<Game>& genreGames) const {
     size_t bucketIndex = hash(genre);
-    auto& chain = table[bucketIndex];
+    const auto& chain = table[bucketIndex];
 
     for(const Entry& e : chain){
         if(e.genre == genre){
