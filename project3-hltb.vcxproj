@@ -129,8 +129,12 @@
     <ClCompile Include="src\bplus_tree.cpp" />
     <ClCompile Include="src\hash_table.cpp" />
     <ClCompile Include="src\load_hltb.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\preprocess_data.cpp" />
+    <ClCompile Include="src\test_main.cpp" />
     <ClCompile Include="src\ui.cpp" />
   </ItemGroup>
   <ItemGroup>
