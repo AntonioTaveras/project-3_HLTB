@@ -24,4 +24,6 @@ private:
     bool hasDeadline;
     int goalAmount; // The number of goals
     int goalUnit; // ex. 0=days, 1=weeks, 2=months, 3=years
+
+    std
 };
