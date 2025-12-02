@@ -33,9 +33,19 @@ void UI::promptUser(){
     if(isPerDay){
         cout << "How many hours can you play per day?: ";
         cin >> hours;
+        while(hours <= 0){
+            cout << "The input is invalid. Please try again" << endl;
+            cout << "How many hours can you play per day?: ";
+            cin >> hours;
+        }
     }else{
         cout << "How many hours can you play per week?: ";
         cin >> hours;
+        while(hours <= 0){
+            cout << "The input is invalid. Please try again" << endl;
+            cout << "How many hours can you play per week?: ";
+            cin >> hours;
+        }
     }
 
     cout<< "Would you like to complete it by a certain day? (i.e. before the new semester begins or before haitus/leave of absence is over) (y/n): " << endl;
@@ -53,6 +63,11 @@ void UI::promptUser(){
         cin >> goalAmount;
         cout << "Enter the unit (0=days, 1=weeks, 2=months, 3=years) ";
         cin >> goalUnit;
+        while(goalUnit < 0 || goalUnit > 3){
+            cout << "The input is invalid. Please try again" << endl;
+            cout << "Enter the unit (0=days, 1=weeks, 2=months, 3=years) ";
+            cin >> goalUnit;
+        }
     }else{
         hasDeadline = false;
     }
