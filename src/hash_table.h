@@ -1,9 +1,21 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-using namespace std;
+#pragma once
+#include "game.h"
+#include <vector>
+#include <list>
+#include <string>
 
-int main()
-{
-	cout << "HLTB" << endl;
-}
+class HashTable{
+public:
+	HashTable(size_t bucketNum = 101);
+	void makeTable(const std::vector<Game>& games);
+	bool findGames(const std::string& genre, std::vector<Game>& genreGames) const;
+
+private:
+	struct Entry{
+		std::string genre;
+		std::vector<Game> games;
+	};
+
+	std::vector<std::list<Entry>> table;
+	size_t hash(const std::string& key) const;
+};
