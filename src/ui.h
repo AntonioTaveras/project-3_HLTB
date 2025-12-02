@@ -15,7 +15,7 @@ public:
     bool getHasDeadline() const;
     int getGoalAmount() const;
     int getGoalUnit() const;
-    void showRecommendations(const std::vector<Game>& games) const;
+    void showRecommendations(const std::vector<Game>& genreGames) const;
 
 private:
     std::string genre;
@@ -24,4 +24,6 @@ private:
     bool hasDeadline;
     int goalAmount; // The number of goals
     int goalUnit; // ex. 0=days, 1=weeks, 2=months, 3=years
+
+    std::vector<Game> filterGames(const std::vector<Game>& genreGames) const;
 };
